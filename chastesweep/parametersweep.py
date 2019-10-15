@@ -33,7 +33,6 @@ from __future__ import print_function
 import os
 import json
 import subprocess
-import numpy as np
 from jinja2 import Environment, PackageLoader, select_autoescape
 from chastesweep.util.pscan import Scan
 

@@ -1,0 +1,4 @@
+include chastesweep/templates/batch.sge.sh
+include chastesweep/templates/batch.slurm.sh
+include chastesweep/templates/main.cpp
+include chastesweep/templates/runsimulation.py

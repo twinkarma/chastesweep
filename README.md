@@ -1,12 +1,32 @@
 # Chaste Parameter Sweeper
 
-A tool to assist with parameter sweeping for Chaste on the HPC. It can also be applied to any other application that correctly accepts the parameter in the correct format. 
+A tool to assist with parameter sweeping for Chaste on the HPC. It can also be applied to any other application that correctly accepts the parameter in the correct format.
+
+## Installation
+
+### By pip
+
+Install by using:
+
+```
+pip install chastesweep
+```
+
+### From repository
+
+```
+# Clone the respository then install it
+git clone https://github.com/twinkarma/chastesweep.git
+cd chastesweep
+python setup.py install
+```
+
 
 ## Parameter Sweeping Tutorial
 
 In this tutorial we will go through how to setup chaste for parameter sweeping on the HPC cluster. Run this tutorial directly on the cluster to be able to follow all examples including job submission.
 
-## Getting a compute node
+### 1. Getting a compute node
 
 When logging in to ShARC or Bessemer, you'll start off on a login node. You'll want to get an interactive session on a worker node to start development:
 
@@ -24,7 +44,49 @@ srun --pty bash -i
 You'll see the console change from `login` to `node` e.g. `[username@sharc-login#] $` to `[username@sharc-node###] $` in the case of ShARC. 
 
 
-## Development Environment, pulling a a Singularity image
+### 2. Install chastesweep python package
+
+ 
+#### On ShARC
+ 
+It is recommended to create a virtual environment on ShARC:
+ 
+```
+# Load the python module
+module load apps/python/anaconda3-4.2.0
+
+# Create a new virtual python environment called my_chaste_env with python 2.7
+conda create -n my_chaste_env python=2.7
+
+# Activate the environment
+source activate my_chaste_env
+
+# Install the chastesweep package
+pip install chastesweep
+
+```
+
+#### On Bessemer
+
+Equivalent code on Bessemer
+
+```
+# Load the python module
+module load Anaconda3/5.3.0
+
+# Create a new virtual python environment called my_chaste_env with python 2.7
+conda create -n my_chaste_env2 python=2.7 chastesweep
+
+# Activate the environment
+source activate my_chaste_env2
+
+# Install the chastesweep package
+pip install chastesweep
+```
+ 
+
+
+### 3. Development Environment, pulling a a Singularity image
 
 ShARC and Bessemer supports the [Singularity](https://sylabs.io/docs/) containerisation technology. The use of containers allow us to standardise the development environment and build dependencies on your local machine and your cluster. 
 
@@ -67,7 +129,7 @@ You will be using the image you've just pulled to do the building and running of
 Note: As you will only be using the container for replying on build dependency, you will not need to modify the image during development which needs admin permission.  
 
 
-## Preparing your code
+### 4. Preparing your code
 
 You now need your own version of Chaste code. The Chaste repository can be found at [https://github.com/Chaste/Chaste](https://github.com/Chaste/Chaste) and this can be forked or cloned directly depending on your requirements. We will just clone directly in this example:
 
@@ -117,7 +179,7 @@ singularity exec chaste-docker_latest.sif apps/ParamSweep
 Your code should execute as is but you'll get errors stating that parameters are missing.
 	
 
-## Passing parameters to the main function
+### 5. Passing parameters to the main function
 
 The parameter sweeper follows the boost::program_options format, where each parameter is passed in the format of `--param_name param_value` e.g. for our `ParamSweep` app: 
 
@@ -128,7 +190,7 @@ singularity exec chaste-docker_latest.sif apps/ParamSweep --output_dir "/outtput
 Note: The `output_dir` parameter is always passed to your app and all outputs of the app should be enforced to only write to this directory.
 
 
-## Declaring parameters and generating the batch script
+### 6. Declaring parameters and generating the batch script
 
 Now that we have an executable ready for accepting parameters, we'll move on to declaring the values of parameters to be explored and generating batch script for submitting a batch task. For this purpose, python API has been created, the class `ParamSweeper` has been created to facilitate this parameter sweeping process. 
 
@@ -183,7 +245,7 @@ sbatch ~/Chaste/build/sweep_results/batch.slurm.sh
 
 
 
-## Running the sweep locally 
+### 7. Running the sweep locally 
 
 Sweep can also be run locally on your machine with the `perform_serial_sweep` function:
 
