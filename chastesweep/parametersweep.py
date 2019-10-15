@@ -99,8 +99,14 @@ class ParamSweeper:
         if output_dir is None:
             raise ValueError("Output directory not specified")
 
+
+
+
         if exec_cmd is None:
             raise ValueError("Must specify an executable command")
+
+        if not os.path.exists(exec_cmd):
+            raise ValueError("Could not locate command {}".format(exec_cmd))
 
         expanded_output = self.expand_parameters(parameters, joint_lists, default_repeats, count_funcs)
         env = Environment(loader=PackageLoader('chastesweep', 'templates'))
