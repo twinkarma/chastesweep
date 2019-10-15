@@ -1,5 +1,6 @@
 # Chaste Parameter Sweeper
 
+A tool to assist with parameter sweeping for Chaste on the HPC. It can also be applied to any other application that correctly accepts the parameter in the correct format. 
 
 ## Parameter Sweeping Tutorial
 
@@ -89,7 +90,7 @@ For this example we'll go with the executable app route due to the simpler setup
 We'll call our app `ParamSweep` and will use three parameters for this example, named `param0`, `param1` and `param2`. To automatically generate a template using the parameter sweeper tool, call:
 
 ```
-python sweepper.gks param0,param1,param2 apps/src/ParamSweep.cpp
+chastesweep_genmain param0,param1,param2 apps/src/ParamSweep.cpp
 ```
 
 The generated source code is printed on screen as well as created for you.
@@ -184,7 +185,7 @@ sbatch ~/Chaste/build/sweep_results/batch.slurm.sh
 
 ## Running the sweep locally 
 
-Sweep can also be run locally on your machine with the `perform_serial_sweep` command:
+Sweep can also be run locally on your machine with the `perform_serial_sweep` function:
 
 ```
 import numpy as np
