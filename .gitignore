@@ -1,0 +1,5 @@
+dist/
+build/
+chastesweep.egg-info/
+*.pyc
+.idea/

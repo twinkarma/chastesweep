@@ -1,5 +1,6 @@
 # Chaste Parameter Sweeper
 
+A tool to assist with parameter sweeping for Chaste on the HPC. It can also be applied to any other application that correctly accepts the parameter in the correct format. 
 
 ## Parameter Sweeping Tutorial
 
