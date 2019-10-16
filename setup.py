@@ -3,7 +3,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 setuptools.setup(
      name='chastesweep',
-     version='0.5',
+     version='0.6',
      scripts=['chastesweep_genmain'],
      author="Twin Karmakharm",
      author_email="t.karmakharm@sheffield.ac.uk",

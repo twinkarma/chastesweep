@@ -118,7 +118,7 @@ DISTRIB_DESCRIPTION="Ubuntu 19.04"
 
 You can run `exit` to exit from the image.
 
-Singularity's `exec` command can be used to call any program from inside the image without needing to go into the interactive session. This is useful when we're running our tasks in a batch script. For example, to get the Ubuntu version as above:
+Singularity's `exec` command can be used to run any program from inside the image without needing to go into the interactive session. This is useful when we're running our tasks in a batch script. For example, to get the Ubuntu version as above:
 
 ```
 singularity exec chaste-docker_latest.sif cat /etc/lsb-release
@@ -126,7 +126,7 @@ singularity exec chaste-docker_latest.sif cat /etc/lsb-release
 
 You will be using the image you've just pulled to do the building and running of the code using the `exec` command as shown above.
 
-Note: As you will only be using the container for replying on build dependency, you will not need to modify the image during development which needs admin permission.  
+Note: As you will only be using the container for its build dependency, you will not need to modify the image during development and so should not need admin permission.  
 
 
 ### 4. Preparing your code

@@ -96,11 +96,14 @@ class ParamSweeper:
         """
 
 
+
+
+        # Expand the paths
+        output_dir = self.get_abs_expanded_path(output_dir)
+        exec_cmd = self.get_abs_expanded_path(exec_cmd)
+
         if output_dir is None:
             raise ValueError("Output directory not specified")
-
-
-
 
         if exec_cmd is None:
             raise ValueError("Must specify an executable command")
@@ -114,9 +117,10 @@ class ParamSweeper:
         if not os.path.exists(output_dir):
             os.mkdir(output_dir)
 
+
         params_output = {"params": expanded_output,
-                         "exec_cmd": os.path.abspath(exec_cmd),
-                         "output_dir": os.path.abspath(output_dir)}
+                         "exec_cmd": exec_cmd,
+                         "output_dir": output_dir}
 
 
         json_output_path = os.path.join(output_dir, self.params_file_name)
@@ -131,8 +135,8 @@ class ParamSweeper:
 
         context = {
             "num_tasks": len(expanded_output),
-            "exec_cmd": os.path.abspath(exec_cmd),
-            "output_dir": os.path.abspath(output_dir),
+            "exec_cmd": exec_cmd,
+            "output_dir": output_dir,
             "batch_params": batch_params
         }
 
@@ -148,6 +152,12 @@ class ParamSweeper:
         with open(python_sim_runner_output_path, "w") as simrunner_file:
             simrunner_file.write(env.get_template("runsimulation.py").render(context))
 
+    def get_abs_expanded_path(self, path):
+        if path is None:
+            return None
+
+        return os.path.abspath(os.path.expanduser(path))
+
     def perform_serial_sweep(self, output_dir, exec_cmd, parameters, joint_lists=[], default_repeats=1, count_funcs=[]):
         """
         Runs the sweep serially
@@ -160,8 +170,31 @@ class ParamSweeper:
         :return:
         """
 
+        # Expand the paths
+        output_dir = self.get_abs_expanded_path(output_dir)
+        exec_cmd = self.get_abs_expanded_path(exec_cmd)
+
+        # Check path validity
+        # Check path validity
+        # Check path validity
+        # Check path validity
+        # Check path validity
+        # Check path validity
+        # Check path validity
+        # Check path validity
+        # Check path validity
+        # Check path validity
+        # Check path validity
+        # Check path validity
+        # Check path validity
         if output_dir is None:
             raise ValueError("Output directory not specified")
+
+        if exec_cmd is None:
+            raise ValueError("Must specify an executable command")
+
+        if not os.path.exists(exec_cmd):
+            raise ValueError("Could not locate command {}".format(exec_cmd))
 
         if not os.path.exists(output_dir):
             os.mkdir(output_dir)

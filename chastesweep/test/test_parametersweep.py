@@ -42,6 +42,19 @@ from chastesweep.util.pscan import JointParameterListSizeError
 
 class TestParameterSweeper(unittest.TestCase):
 
+
+    def test_generate_path(self):
+
+        sweeper = ParamSweeper()
+
+        home_dir = os.path.expanduser("~")
+
+        self.assertEqual(sweeper.get_abs_expanded_path("~/afolder"), os.path.join(home_dir, "afolder"))
+
+        self.assertEqual(None, sweeper.get_abs_expanded_path(None))
+
+
+
     def test_expansion(self):
 
         p = {}
