@@ -70,13 +70,13 @@ In the output directory `sweep_results`, you will see the `params.json`, `runsim
 You can submit this file to the SGE scheduler to start your parameter sweeping task:
 
 ```bash
-qsub ~/Chaste/build/sweep_results/batch.sge.sh
+qsub sweep_results/batch.sge.sh
 ```
 
 If we're running a SLURM scheduler, simply change the `scheduler=ParamSweeper.SGE` to `scheduler=ParamSweeper.SLURM`. You'll also want to change your `batch_params` parameters as they'll likely be different from SGE. Your batch submit command will also change to:
  
 ```bash
-sbatch ~/Chaste/build/sweep_results/batch.slurm.sh
+sbatch sweep_results/batch.slurm.sh
 ```
 
 ### Expanding parameters
