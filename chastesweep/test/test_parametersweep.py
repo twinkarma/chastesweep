@@ -79,6 +79,25 @@ class TestParameterSweeper(unittest.TestCase):
         with self.assertRaises(JointParameterListSizeError):
             sweeper.expand_parameters(parameters=p, joint_lists=joint_lists_fail)
 
+        # Change number of default iteration run
+        expanded_params = sweeper.expand_parameters(parameters=p, default_repeats=2)
+        self.assertEqual(len(expanded_params), 150)
+
+        # Variable iteration, run twice for c < 14 and once for c >= 14
+        default_count = lambda p: 2
+        big_c_count = lambda p: 1 if p['c'] >= 14 else None
+
+        count_funcs = [default_count, big_c_count]
+
+        expanded_params = sweeper.expand_parameters(parameters=p, count_funcs=count_funcs)
+        self.assertEqual(len(expanded_params), 100)
+
+        # Swapping counter, default_counter will overwrite all counts
+        count_funcs = [big_c_count, default_count]
+
+        expanded_params = sweeper.expand_parameters(parameters=p, count_funcs=count_funcs)
+        self.assertEqual(len(expanded_params), 150)
+
     def test_batch_generation(self):
 
         p = {}
