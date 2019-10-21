@@ -12,13 +12,13 @@ While originally created for Chaste, it can also be applied to any other applica
 
 Install by using:
 
-```
+```bash
 pip install chastesweep
 ```
 
 ### From repository
 
-```
+```bash
 # Clone the respository then install it
 git clone https://github.com/twinkarma/chastesweep.git
 cd chastesweep
