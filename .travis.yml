@@ -1,7 +1,14 @@
 language: python
 python:
-  - "2.7"
+- '2.7'
 install:
-  - pip install -r requirements.txt
+- pip install -r requirements.txt
 script:
-  - python -m unittest discover
+- python -m unittest discover
+deploy:
+  provider: pypi
+  user: __token__
+  password:
+    secure: PJV+EB08lAy8twk/IPLz6nU0JLFlPjsWxJ1CK9cpBTTsawl/DiZNp3dcPvlCRX9mPEQR02wFe9PeoHzCqncvAkM07w2R8ONcCSylxQgt+CMMcU75yUENxkVMvh9bXF4iPLA0AHPfqZFjI/Q8NCiLSiUZOTTVlH+Kc4gWoRbScGS1VVYInJAjEx9ZDYJAYHvhriu0z1b1/1xqILWOszItYxTfi8b7RC1om5PRuB6y441qX2WZlJfN4aIqtNl8eOSRu+fzAti2HzJ2C3INSmKQF6K2SeAUAIAQEoS2ouFev9myOrHcWe67xs4TyYLZFsWQWlla8X8PZKVtJbwhxYHRK9dFCncTUa0unBo+LTMA81rUMVYR9US4q3SKmMFtSouOiiDheHRWZ6mXxcjVG59hD079Dqjp8nT3moEqNzSJfbJ55dUGb4hYdqcWbQ1SzP1eyEIN0liY/sqo/0nuONEggxIVrfkDWFBVwv3lvutXbEIRkPeI5coV/4i2nuQeBQeOB5z4VtyqFD86Et9LXUC3S0C8r53bxeFLOykvEV8lCTyXbfC+IRUJsL8gI95dVk92VRm9tGZQiLWkMItfsBXc8NbY+d2DKJXeDasb6yuETE+y5Qw7kT1cL5bq5TB3nhEbDjTflLDoAlw4JhFpq6w2R7WmQh2EMifsOFXVMsLjPio=
+  on:
+    tags: true
